@@ -17,7 +17,7 @@ class FullPage extends Component {
         return(
             <div className="fullPage">
                 <h3>{this.props.values.name}</h3>
-                <FontAwesomeIcon icon="times-circle" className="btn-close" onClick={() => this.props.showFullPage(false)} />
+                <FontAwesomeIcon icon="times-circle" className="btn-close" onClick={() => {this.props.showFullPage(false); this.props.close()}} />
                 <img src={this.props.values.image} alt={this.props.values.name} />
                 <p>Valor: {this.props.values.price}</p>
                 <span>Total: {this.props.values.price * this.state.qtd}</span>

@@ -76,7 +76,7 @@ class App extends Component {
   renderExample = () => {
     return this.state.productsExample.map((value, i) => {
       return (
-        <li key={i}>
+        <li key={i} onClick={() => {this.props.showFullPage(true); this.setState({page: value})}}>
           <h3>{value.name}</h3>
           <img src={value.image} alt={value.name} />
           <p>{value.price}</p>
@@ -123,14 +123,20 @@ class App extends Component {
       );
     })
   }
-  
+
+  onClosePage = () => {
+    this.setState({
+      page: {}
+    })
+  }
+
   render() {
     if(this.props.fullPage){
       return (
         <div className="App">
           <Header />
           <Nav />
-          <FullPage values={this.state.page} />
+          <FullPage values={this.state.page} close={this.onClosePage} />
         </div>
       );
     }else{
