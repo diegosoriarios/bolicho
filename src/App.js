@@ -72,19 +72,15 @@ class App extends Component {
   }
 
   renderExample = () => {
-    if(this.props.cat.length === 0){
-      return this.state.productsExample.map((value, i) => {
-        return (
-          <li key={i}>
-            <h3>{value.name}</h3>
-            <img src={value.image} alt={value.name} />
-            <p>{value.price}</p>
-          </li>
-        );
-      })
-    }else{
-      return <Categories cat={this.props.cat} />
-    }
+    return this.state.productsExample.map((value, i) => {
+      return (
+        <li key={i}>
+          <h3>{value.name}</h3>
+          <img src={value.image} alt={value.name} />
+          <p>{value.price}</p>
+        </li>
+      );
+    })
   }
 
   getCategory = cat => {
@@ -127,25 +123,37 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div className="App">
-        <Header />
-        <Nav />
-        <div className="banner">
-          <img src="http://lorempixel.com/640/480/abstract" alt="banner" />
+    if(this.props.cat.length === 0){
+      return (
+        <div className="App">
+          <Header />
+          <Nav />
+          <div className="banner">
+            <img src="http://lorempixel.com/640/480/abstract" alt="banner" />
+          </div>
+          <div className="container">
+            <ul className="exampleSlider">
+              {this.renderExample()}
+            </ul>
+          </div>
+          <div className="box-container">
+            {this.showAll()}
+          </div>
+          <div className="verMais">+</div>
+          <Footer />
         </div>
-        <div className="container">
-          <ul className="exampleSlider">
-            {this.renderExample()}
-          </ul>
+      );
+    }else{
+      return (
+        <div className="App">
+          <Header />
+          <Nav />
+          <Categories cat={this.props.cat} />
+          <div className="verMais">+</div>
+          <Footer />
         </div>
-        <div className="box-container">
-          {this.showAll()}
-        </div>
-        <div className="verMais">+</div>
-        <Footer />
-      </div>
-    );
+      );
+    }
   }
 }
 

@@ -3,6 +3,15 @@
     margin: 0;
     border: 0;
   }
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    list-style-type: none;
+    margin: 0;
+  }
   
   img {
     width: 100%;
@@ -135,6 +144,7 @@
   .listItem .item {
     border: 1px solid black;
     width: 80%;
+    margin: 5% auto;
   }
   
   .initialPage {
@@ -156,6 +166,8 @@
   }
 
   .footer {
+    position: relative;
+    bottom: 0;
     margin-top: 30px;
     height: 5vh;
     line-height: 5vh;
