@@ -77,8 +77,8 @@ class App extends Component {
     return this.state.productsExample.map((value, i) => {
       return (
         <li key={i} onClick={() => {this.props.showFullPage(true); this.setState({page: value})}}>
-          <h3>{value.name}</h3>
           <img src={value.image} alt={value.name} />
+          <h3>{value.name}</h3>
           <p>{value.price}</p>
         </li>
       );
@@ -116,8 +116,8 @@ class App extends Component {
     return this.state.showInitial.map((value, i) => {
       return (
         <li key={i} className="initialPage" onClick={() => {this.props.showFullPage(true); this.setState({page: value})}}>
-          <h3>{value.name}</h3>
           <img src={value.image} alt={value.name} />
+          <h3>{value.name}</h3>
           <p>{value.price}</p>
         </li>
       );

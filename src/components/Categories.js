@@ -39,8 +39,8 @@ class Categories extends Component {
         return this.state.categories.map((value, i) => {
             return (
                 <li key={i} className="item">
-                    <h3>{value.nome}</h3>
                     <img src={value.image} alt={value.nome} />
+                    <h3>{value.nome}</h3>   
                     <p>{value.price}</p>
                 </li>
             );
