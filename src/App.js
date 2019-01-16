@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
 import Nav from './components/Nav';
-import Categories from './components/Categories'
+import Categories from './components/Categories';
+import Footer from './components/Footer';
 import './App.css';
 import axios from 'axios'
 import { connect } from 'react-redux';
@@ -13,6 +14,7 @@ class App extends Component {
     this.state = {
       productsExample: [],
       listProd: [],
+      showInitial: []
     }
   }
 
@@ -22,6 +24,16 @@ class App extends Component {
           return response.data
         })
         .then(data => {
+          let showInitial = []
+          for(var i = 0; i < 20; i++){
+            showInitial = showInitial.concat([
+              {
+                "name": data[i].name,
+                "price": data[i].price,
+                "image": data[i].image
+              }
+            ])
+          }
           let rand = [
             Math.floor(Math.random() * data.length),
             Math.floor(Math.random() * data.length),
@@ -29,6 +41,7 @@ class App extends Component {
             Math.floor(Math.random() * data.length)
           ]
           this.setState({
+            showInitial,
             productsExample: [
               {
                 "name": data[rand[0]].name,
@@ -101,14 +114,36 @@ class App extends Component {
         })
   }
 
+  showAll = () => {
+    return this.state.showInitial.map((value, i) => {
+      return (
+        <li key={i} className="initialPage">
+          <h3>{value.name}</h3>
+          <img src={value.image} alt={value.name} />
+          <p>{value.price}</p>
+        </li>
+      );
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <Header />
         <Nav />
-        <ul className="exampleSlider">
-          {this.renderExample()}
-        </ul>
+        <div className="banner">
+          <img src="http://lorempixel.com/640/480/abstract" alt="banner" />
+        </div>
+        <div className="container">
+          <ul className="exampleSlider">
+            {this.renderExample()}
+          </ul>
+        </div>
+        <div className="box-container">
+          {this.showAll()}
+        </div>
+        <div className="verMais">+</div>
+        <Footer />
       </div>
     );
   }

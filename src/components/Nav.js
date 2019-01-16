@@ -51,7 +51,7 @@ class Nav extends Component {
                     className="nav"
                 >
                     <div>
-                        <img src="" alt="Img" />
+                        <img src="http://lorempixel.com/640/480/food" alt="Img" />
                     </div>
                     <h3>Categories</h3>
                     <ul>
