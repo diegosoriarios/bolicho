@@ -68,7 +68,7 @@
     width: 100%;
   }
   .header{
-    background-color: black;
+    background-color: #e10f0f;
     height: 50px;
     width: 100%;
     position: absolute;
@@ -78,7 +78,7 @@
   }
 
   .header .left{
-      background-color: black;
+      background-color: #e10f0f;
       float: left;
       width: 25%;
       font-size: 1.5em;
@@ -87,7 +87,7 @@
   }
 
   .header .right {
-      background-color: black;
+      background-color: #e10f0f;
       float: right;
       width: 45%;
       font-size: 1.5em;
@@ -108,7 +108,7 @@
       left: 46%;
       margin: 0;
       line-height: 50px;
-      background-color: black;
+      background-color: #e10f0f;
   }
 
   .nav {
@@ -116,7 +116,7 @@
     top: 0;
     height: 100%;
     width: 49.9%;
-    background-color: black;
+    background-color: #e10f0f;
     color: white;
   }
 
@@ -158,11 +158,12 @@
     margin: 0 auto;
     width: 50px;
     height: 50px;
-    border: 1px solid black;
     border-radius: 50%;
     line-height: 45px;
     font-weight: bold;
     font-size: 2em;
+    color: white;
+    background-color: #e10f0f;
   }
 
   .footer {
@@ -171,7 +172,34 @@
     margin-top: 30px;
     height: 5vh;
     line-height: 5vh;
-    background-color: black;
+    background-color: #e10f0f;
     color: white;
+  }
+
+  .fullPage {
+    padding: 5% 0 5% 0;
+  }
+
+  .fullPage h3 {
+    margin-bottom: 25px;
+    font-size: 2em;
+  }
+
+  .fullPage img {
+    width: 90%;
+  }
+
+  .btn-close {
+    position: absolute;
+    right: 5%;
+    top: 10%;
+  }
+  
+  .qtdInput {
+    border: 1px solid black;
+    outline: none;
+    width: 5%;
+    margin: 0 5% 0 5%;
+    text-align: center;
   }
 }

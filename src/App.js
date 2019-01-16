@@ -3,10 +3,11 @@ import Header from './components/Header';
 import Nav from './components/Nav';
 import Categories from './components/Categories';
 import Footer from './components/Footer';
+import FullPage from './components/FullPage';
 import './App.css';
 import axios from 'axios'
 import { connect } from 'react-redux';
-import { navIsOpen, selectCat } from './actions/click';
+import { navIsOpen, selectCat, showFullPage } from './actions/click';
 
 class App extends Component {
   constructor(props){
@@ -14,7 +15,8 @@ class App extends Component {
     this.state = {
       productsExample: [],
       listProd: [],
-      showInitial: []
+      showInitial: [],
+      page: {}
     }
   }
 
@@ -113,7 +115,7 @@ class App extends Component {
   showAll = () => {
     return this.state.showInitial.map((value, i) => {
       return (
-        <li key={i} className="initialPage">
+        <li key={i} className="initialPage" onClick={() => {this.props.showFullPage(true); this.setState({page: value})}}>
           <h3>{value.name}</h3>
           <img src={value.image} alt={value.name} />
           <p>{value.price}</p>
@@ -121,38 +123,48 @@ class App extends Component {
       );
     })
   }
-
+  
   render() {
-    if(this.props.cat.length === 0){
+    if(this.props.fullPage){
       return (
         <div className="App">
           <Header />
           <Nav />
-          <div className="banner">
-            <img src="http://lorempixel.com/640/480/abstract" alt="banner" />
-          </div>
-          <div className="container">
-            <ul className="exampleSlider">
-              {this.renderExample()}
-            </ul>
-          </div>
-          <div className="box-container">
-            {this.showAll()}
-          </div>
-          <div className="verMais">+</div>
-          <Footer />
+          <FullPage values={this.state.page} />
         </div>
       );
     }else{
-      return (
-        <div className="App">
-          <Header />
-          <Nav />
-          <Categories cat={this.props.cat} />
-          <div className="verMais">+</div>
-          <Footer />
-        </div>
-      );
+      if(this.props.cat.length === 0){
+        return (
+          <div className="App">
+            <Header />
+            <Nav />
+            <div className="banner">
+              <img src="http://lorempixel.com/640/480/abstract" alt="banner" />
+            </div>
+            <div className="container">
+              <ul className="exampleSlider">
+                {this.renderExample()}
+              </ul>
+            </div>
+            <div className="box-container">
+              {this.showAll()}
+            </div>
+            <div className="verMais">+</div>
+            <Footer />
+          </div>
+        );
+      }else{
+        return (
+          <div className="App">
+            <Header />
+            <Nav />
+            <Categories cat={this.props.cat} />
+            <div className="verMais">+</div>
+            <Footer />
+          </div>
+        );
+      }
     }
   }
 }
@@ -160,14 +172,16 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
       opened: state.navIsOpen,
-      cat: state.selectCat
+      cat: state.selectCat,
+      fullPage: state.showFullPage
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
       isOpened: (bool) => dispatch(navIsOpen(bool)),
-      selectCat: (cat) => dispatch(selectCat(cat))
+      selectCat: (cat) => dispatch(selectCat(cat)),
+      showFullPage: (bool) => dispatch(showFullPage(bool))
   }
 }
 

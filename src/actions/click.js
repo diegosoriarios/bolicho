@@ -18,3 +18,10 @@ export function isLoading(bool){
         loading: bool
     }
 }
+
+export function showFullPage(bool){
+    return {
+        type: 'FULL_PAGE',
+        fullPage: bool
+    }
+}

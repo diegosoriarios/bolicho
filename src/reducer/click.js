@@ -24,3 +24,12 @@ export function isLoading(state = true, action){
             return state;
     }
 }
+
+export function showFullPage(state = false, action){
+    switch(action.type){
+        case 'FULL_PAGE':
+            return action.fullPage;
+        default:
+            return state;
+    }
+}
