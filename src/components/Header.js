@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faTimes, faUser, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faTimes, faUser, faShoppingCart, faFrown } from '@fortawesome/free-solid-svg-icons'
 import { connect } from 'react-redux';
 import { navIsOpen, userIsLogged, showCart} from '../actions/click';
 import { CSSTransition, transit } from 'react-css-transition'
@@ -10,7 +10,7 @@ import Login from './Login'
 
 let total = 0;
 
-library.add(faBars, faTimes, faUser, faShoppingCart)
+library.add(faBars, faTimes, faUser, faShoppingCart, faFrown)
 
 Modal.setAppElement('#root')
 
@@ -81,7 +81,11 @@ class Header extends Component {
                     <ul>
                         {this.renderCart()}
                     </ul>
-                    <p>Total: {total}</p>
+                    <p style={{display: total === 0 ? 'none' : 'block'}}>Total: {total}</p>
+                    <div style={{display: total === 0 ? 'block' : 'none'}} className="cartEmpty">
+                        <FontAwesomeIcon icon="frown" style={{fontSize: '10em', color: 'grey'}}/>
+                        <p style={{fontSize: '1.5em', marginTop: '5%'}}>Carinho está vazio</p>
+                    </div>
 
                 </Modal>
                 <CSSTransition

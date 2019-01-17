@@ -225,4 +225,9 @@
     border-bottom: 1px solid black;
     margin: 2%;
   }
+
+  .cartEmpty {
+    text-align: center;
+    margin-top: 100px;
+  }
 }
