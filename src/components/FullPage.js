@@ -4,13 +4,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import '../App.css';
 import { connect } from 'react-redux';
-import { showFullPage } from '../actions/click';
+import { showFullPage, addCart } from '../actions/click';
 
 library.add(faTimesCircle)
 
 class FullPage extends Component {
     state = {
         qtd: 1,
+    }
+
+    addToCart = () => {
+        if(this.props.userIsLogged){
+            console.log('Adicionar ao carrinho da conta')
+        }else{
+            console.log('Adicionar ao carrinho e localStorage')
+            let value = {
+                "name": this.props.values.name,
+                "image": this.props.values.image,
+                "price": (this.props.values.price * this.state.qtd)
+            }
+            this.props.addCart(value)
+        }
     }
 
     render(){
@@ -27,7 +41,7 @@ class FullPage extends Component {
                     onChange={e => this.setState({qtd: e.target.value})} 
                     className="qtdInput"
                 /><br />
-                <button>Adicionar ao Carrinho</button>
+                <button onClick={() => this.addToCart()}>Adicionar ao Carrinho</button>
             </div>
         );
     }
@@ -37,13 +51,15 @@ const mapStateToProps = (state) => {
     return {
         opened: state.navIsOpen,
         cat: state.selectCat,
-        fullPage: state.showFullPage
+        fullPage: state.showFullPage,
+        isLogged: state.userIsLogged
     };
   };
   
   const mapDispatchToProps = (dispatch) => {
     return {
-        showFullPage: (bool) => dispatch(showFullPage(bool))
+        showFullPage: (bool) => dispatch(showFullPage(bool)),
+        addCart: (item) => dispatch(addCart(item))
     }
   }
   

@@ -1,3 +1,7 @@
+const initialUserState = {
+    cart: []
+}
+
 export function navIsOpen(state = false, action) {
     switch(action.type){
         case 'ITS_OPEN':
@@ -39,6 +43,28 @@ export function userIsLogged(state = false, action){
         case 'IS_LOGGED':
             return action.isLogged;
         default:
+            return state;
+    }
+}
+
+export function addCart(state = initialUserState, action){
+    switch(action.type){
+        case 'ADD_ITEM':
+            console.log(action.newItem)
+            return {
+                ...state,
+                cart: state.cart.concat(action.newItem)
+            }
+        default:
+            return state;
+    }
+}
+
+export function showCart(state = false, action){
+    switch(action.type){
+        case 'SHOW_CART':
+            return action.cartOpen;
+        default: 
             return state;
     }
 }

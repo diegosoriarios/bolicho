@@ -32,3 +32,17 @@ export function userIsLogged(bool){
         isLogged: bool
     }
 }
+
+export function addCart(item){
+    return {
+        type: 'ADD_ITEM',
+        newItem: item
+    }
+}
+
+export function showCart(bool){
+    return {
+        type: 'SHOW_CART',
+        cartOpen: bool,
+    }
+}

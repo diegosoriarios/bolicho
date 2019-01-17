@@ -3,7 +3,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faTimes, faUser, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { connect } from 'react-redux';
-import { navIsOpen, userIsLogged } from '../actions/click';
+import { navIsOpen, userIsLogged, showCart} from '../actions/click';
 import { CSSTransition, transit } from 'react-css-transition'
 import Modal from 'react-modal'
 import Login from './Login'
@@ -21,6 +21,7 @@ class Header extends Component {
         super();
         this.state = {
             modalIsOpen: false,
+            showAccount: false,
         }
     }
 
@@ -30,9 +31,23 @@ class Header extends Component {
 
     clickUserIcon = () => {
         if(this.props.isLogged){
-            console.log('LOGADO')
+            this.setState({showAccount: !this.state.showAccount})
         }else{
             this.setState({modalIsOpen: !this.state.modalIsOpen})
+        }
+    }
+
+    renderCart = () => {
+       if(this.props.cartOpen){
+            return this.props.cart.cart.map((value, i) => {
+                return (
+                    <li key={i}>
+                        <img src={value.image} alt={value.name} />
+                        <p>{value.name}</p>
+                        <p>{value.price}</p>
+                    </li>
+                );
+            })
         }
     }
 
@@ -45,6 +60,20 @@ class Header extends Component {
                 >
                     <FontAwesomeIcon icon="times" onClick={() => this.setState({modalIsOpen: false})} />
                     <Login close={this.closeModal} />
+                </Modal>
+                <Modal
+                    isOpen={this.state.showAccount}
+                    contentLabel="Example Modal"
+                >
+                    <FontAwesomeIcon icon="times" onClick={() => this.setState({showAccount: false})} />
+                    <p>Conta</p>
+                </Modal>
+                <Modal
+                    isOpen={this.props.cartOpen}
+                    contentLabel="Example Modal"
+                >
+                    <FontAwesomeIcon icon="times" onClick={() => this.props.showCart(false)} />
+                    {this.renderCart()}
                 </Modal>
                 <CSSTransition
                     defaultStyle={{ transform: "translate(0, 0)" }}
@@ -60,7 +89,7 @@ class Header extends Component {
                         </div>
                         <h3>Buyt</h3>
                         <div className="right" >
-                            <FontAwesomeIcon className="shoppingCart" icon="shopping-cart" />
+                            <FontAwesomeIcon className="shoppingCart" icon="shopping-cart"  onClick={() => this.props.showCart(true)} />
                             <FontAwesomeIcon className="user" icon="user" onClick={() => this.clickUserIcon()} />
                         </div>
                     </div>
@@ -73,14 +102,17 @@ class Header extends Component {
 const mapStateToProps = (state) => {
     return {
         opened: state.navIsOpen,
-        isLogged: state.userIsLogged
+        isLogged: state.userIsLogged,
+        cartOpen: state.showCart,
+        cart: state.addCart
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         isOpened: (bool) => dispatch(navIsOpen(bool)),
-        userIsLogged: (bool) => dispatch(userIsLogged(bool))
+        userIsLogged: (bool) => dispatch(userIsLogged(bool)),
+        showCart: (bool) => dispatch(showCart(bool))
     }
 }
   

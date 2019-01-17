@@ -4,7 +4,9 @@ import {
     selectCat, 
     isLoading, 
     showFullPage, 
-    userIsLogged 
+    userIsLogged,
+    showCart,
+    addCart
 } from './click';
 
 export default combineReducers({
@@ -12,5 +14,7 @@ export default combineReducers({
     selectCat,
     isLoading,
     showFullPage,
-    userIsLogged
+    userIsLogged,
+    showCart,
+    addCart
 });
