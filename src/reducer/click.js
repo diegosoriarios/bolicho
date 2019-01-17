@@ -33,3 +33,12 @@ export function showFullPage(state = false, action){
             return state;
     }
 }
+
+export function userIsLogged(state = false, action){
+    switch(action.type){
+        case 'IS_LOGGED':
+            return action.isLogged;
+        default:
+            return state;
+    }
+}

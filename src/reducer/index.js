@@ -1,9 +1,16 @@
 import { combineReducers } from 'redux';
-import { navIsOpen, selectCat, isLoading, showFullPage } from './click';
+import { 
+    navIsOpen, 
+    selectCat, 
+    isLoading, 
+    showFullPage, 
+    userIsLogged 
+} from './click';
 
 export default combineReducers({
     navIsOpen,
     selectCat,
     isLoading,
-    showFullPage
+    showFullPage,
+    userIsLogged
 });

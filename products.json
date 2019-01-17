@@ -371,5 +371,8 @@
 	  "image": "http://lorempixel.com/640/480/nature",
 	  "price": "364.00"
 	}
-  ]
+	],
+	"users": [
+		{ "id": 1, "username": "teste", "password": "teste"}
+	]
 }

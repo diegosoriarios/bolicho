@@ -5,7 +5,7 @@
   }
 
   body {
-    background-color: #f2dcdc;
+    background-color: white;
   }
 
   ul {
@@ -213,5 +213,16 @@
     width: 5%;
     margin: 0 5% 0 5%;
     text-align: center;
+  }
+
+  .modalLogin {
+    text-align: center;
+    padding: 1%;
+  }
+
+  .modalLogin input {
+    outline: none;
+    border-bottom: 1px solid black;
+    margin: 2%;
   }
 }

@@ -25,3 +25,10 @@ export function showFullPage(bool){
         fullPage: bool
     }
 }
+
+export function userIsLogged(bool){
+    return {
+        type: 'IS_LOGGED',
+        isLogged: bool
+    }
+}
