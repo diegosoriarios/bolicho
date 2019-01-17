@@ -8,6 +8,8 @@ import { CSSTransition, transit } from 'react-css-transition'
 import Modal from 'react-modal'
 import Login from './Login'
 
+let total = 0;
+
 library.add(faBars, faTimes, faUser, faShoppingCart)
 
 Modal.setAppElement('#root')
@@ -38,8 +40,11 @@ class Header extends Component {
     }
 
     renderCart = () => {
-       if(this.props.cartOpen){
+        if(this.props.cartOpen){
+            total = 0;
             return this.props.cart.cart.map((value, i) => {
+                total += value.price
+                console.log(total)
                 return (
                     <li key={i}>
                         <img src={value.image} alt={value.name} />
@@ -73,7 +78,11 @@ class Header extends Component {
                     contentLabel="Example Modal"
                 >
                     <FontAwesomeIcon icon="times" onClick={() => this.props.showCart(false)} />
-                    {this.renderCart()}
+                    <ul>
+                        {this.renderCart()}
+                    </ul>
+                    <p>Total: {total}</p>
+
                 </Modal>
                 <CSSTransition
                     defaultStyle={{ transform: "translate(0, 0)" }}
