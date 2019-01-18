@@ -122,6 +122,7 @@
     width: 49.9%;
     background-color: #e10f0f;
     color: white;
+    z-index: 10;
   }
 
   .nav img {
@@ -229,5 +230,71 @@
   .cartEmpty {
     text-align: center;
     margin-top: 100px;
+  }
+  
+  .menu-item {
+    padding: 0 20px;
+    margin: 5px 10px;
+    user-select: none;
+    cursor: pointer;
+    border: none;
+    height: 200px;
+    width: 200px;
+    border: 1px solid black;
+    text-align: center;
+  }
+
+  .menu-item img {
+    width: 80%;
+    margin-top: 2%;
+  }
+   
+  .scroll-menu-arrow {
+    padding: 20px;
+    cursor: pointer;
+  }
+
+  .descriptionBox {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .description {
+    text-align: justify;
+  }
+
+  .fullPage .price {
+    font-weight: bold;
+  }
+
+  .descriptionContent {
+    background-color: red;
+  }
+
+  .cartList {
+    border: 1px solid black;
+    padding: 2%;
+    height: 75px;
+    margin-top: 1%;
+  }
+
+  .cartImage {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+  }
+
+  .cartContent {
+    float: right;
+  }
+
+  .cartName {
+    height: 35px;
+  }
+
+  .cartPrice {
+    height: 35px;
+    text-align: right;
+    line-height: 65px;
   }
 }

@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * [Css Transition](http://reactcommunity.org/react-transition-group/css-transition/)
 * [Redux](https://medium.com/@stowball/a-dummys-guide-to-redux-and-thunk-in-react-d8904a7005d3)
 * [Axios](https://github.com/axios/axios)
-* [TESTE](https://github.com/akiran/react-slick)
+* [react-horizontal-scrolling-menu](https://www.npmjs.com/package/react-horizontal-scrolling-menu)
 ```
 json-server --watch products.json -p 3004
 ```

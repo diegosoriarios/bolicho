@@ -30,18 +30,26 @@ class FullPage extends Component {
     render(){
         return(
             <div className="fullPage">
-                <h3>{this.props.values.name}</h3>
                 <FontAwesomeIcon icon="times-circle" className="btn-close" onClick={() => {this.props.showFullPage(false); this.props.close()}} />
+                <br /><br />
                 <img src={this.props.values.image} alt={this.props.values.name} />
-                <p>Valor: {this.props.values.price}</p>
-                <span>Total: {this.props.values.price * this.state.qtd}</span>
-                <input 
-                    type="number" 
-                    value={this.state.qtd} 
-                    onChange={e => this.setState({qtd: e.target.value})} 
-                    className="qtdInput"
-                /><br />
-                <button onClick={() => this.addToCart()}>Adicionar ao Carrinho</button>
+                <h4>{this.props.values.name}</h4>
+                <p className="price">R$ {this.props.values.price}</p>
+                <div className="descriptionBox">
+                    <p className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac dignissim libero. 
+                        Mauris luctus arcu nec arcu ornare posuere. Mauris sed nunc a mauris congue pharetra. 
+                    </p>
+                    <div className="descriptionContent">
+                        <span>Total: {this.props.values.price * this.state.qtd}</span>
+                        <input 
+                            type="number" 
+                            value={this.state.qtd} 
+                            onChange={e => this.setState({qtd: e.target.value})} 
+                            className="qtdInput"
+                        /><br />
+                        <button onClick={() => this.addToCart()}>Adicionar ao Carrinho</button>
+                    </div>
+                </div>
             </div>
         );
     }

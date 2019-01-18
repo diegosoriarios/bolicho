@@ -8,6 +8,20 @@ import './App.css';
 import axios from 'axios'
 import { connect } from 'react-redux';
 import { navIsOpen, selectCat, showFullPage } from './actions/click';
+import ScrollMenu from 'react-horizontal-scrolling-menu';
+
+const Arrow = ({ text, className }) => {
+  return (
+    <div
+      className={className}
+    >{text}</div>
+  );
+};
+ 
+ 
+const ArrowLeft = Arrow({ text: '<', className: 'arrow-prev' });
+const ArrowRight = Arrow({ text: '>', className: 'arrow-next' });
+
 
 class App extends Component {
   constructor(props){
@@ -16,7 +30,8 @@ class App extends Component {
       productsExample: [],
       listProd: [],
       showInitial: [],
-      page: {}
+      page: {},
+      selected: 0
     }
   }
 
@@ -76,11 +91,11 @@ class App extends Component {
   renderExample = () => {
     return this.state.productsExample.map((value, i) => {
       return (
-        <li key={i} onClick={() => {this.props.showFullPage(true); this.setState({page: value})}}>
+        <div key={i} onClick={() => {this.props.showFullPage(true); this.setState({page: value})}} className="menu-item">
           <img src={value.image} alt={value.name} />
           <h3>{value.name}</h3>
           <p>{value.price}</p>
-        </li>
+        </div>
       );
     })
   }
@@ -149,9 +164,14 @@ class App extends Component {
               <img src="http://lorempixel.com/640/480/abstract" alt="banner" />
             </div>
             <div className="container">
-              <ul className="exampleSlider">
-                {this.renderExample()}
-              </ul>
+              <h3>Recomendado</h3><br />
+              <ScrollMenu
+                data={this.renderExample()}
+                arrowLeft={ArrowLeft}
+                arrowRight={ArrowRight}
+                selected={this.state.selected}
+                onSelect={this.onSelect}
+              />
             </div>
             <div className="box-container">
               {this.showAll()}

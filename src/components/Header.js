@@ -46,10 +46,12 @@ class Header extends Component {
                 total += value.price
                 console.log(total)
                 return (
-                    <li key={i}>
-                        <img src={value.image} alt={value.name} />
-                        <p>{value.name}</p>
-                        <p>{value.price}</p>
+                    <li key={i} className="cartList">
+                        <img src={value.image} alt={value.name} className="cartImage"/>
+                        <div className="cartContent">
+                            <p className="cartName">{value.name}</p>
+                            <p className="cartPrice">{value.price}</p>
+                        </div>
                     </li>
                 );
             })
@@ -61,21 +63,21 @@ class Header extends Component {
             <div>
                 <Modal
                     isOpen={this.state.modalIsOpen}
-                    contentLabel="Example Modal"
+                    contentLabel="Login"
                 >
                     <FontAwesomeIcon icon="times" onClick={() => this.setState({modalIsOpen: false})} />
                     <Login close={this.closeModal} />
                 </Modal>
                 <Modal
                     isOpen={this.state.showAccount}
-                    contentLabel="Example Modal"
+                    contentLabel="Conta"
                 >
                     <FontAwesomeIcon icon="times" onClick={() => this.setState({showAccount: false})} />
                     <p>Conta</p>
                 </Modal>
                 <Modal
                     isOpen={this.props.cartOpen}
-                    contentLabel="Example Modal"
+                    contentLabel="Cart"
                 >
                     <FontAwesomeIcon icon="times" onClick={() => this.props.showCart(false)} />
                     <ul>
